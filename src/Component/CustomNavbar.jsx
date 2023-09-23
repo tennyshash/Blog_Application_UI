@@ -15,7 +15,7 @@ import {
   NavbarText,
   Button,
 } from 'reactstrap';
-import { doLogout, getCurrentUser, isLoggedIn } from '../auth';
+import { doLogout, getCurrentUser, isAdmin, isLoggedIn } from '../auth';
 import userContext from '../context/userContext';
 
 const CustomNavbar = () => {
@@ -104,9 +104,9 @@ const CustomNavbar = () => {
 
                 <DropdownItem divider />
 
-                <DropdownItem>GitHub</DropdownItem>
-                <DropdownItem>Instagram</DropdownItem>
-                <DropdownItem>LinkedIn</DropdownItem>
+                <DropdownItem tag={ReactLink} to='https://github.com/tennyshash'>GitHub</DropdownItem>
+                <DropdownItem>Swagger UI</DropdownItem>
+                <DropdownItem tag={ReactLink}  to='https://www.linkedin.com/in/shashwatpratap-parihar/'>LinkedIn</DropdownItem>
 
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -116,6 +116,26 @@ const CustomNavbar = () => {
             {
               login  && (
                   <>
+                  {
+                    user.isAdmin ? 
+
+                    <NavItem>
+                      <NavLink tag={ReactLink} to={`/user/admin`}>
+                        Admin Services
+                      </NavLink>
+                    </NavItem>
+                                : ''
+                  }
+
+                  {
+                    isAdmin() ?
+                    <NavItem>
+                      <NavLink col tag={ReactLink} to={`/user/admin`}>
+                        Admin Services
+                      </NavLink>
+                    </NavItem>   : ''
+                  }
+                  
                   <NavItem>
                     <NavLink tag={ReactLink} to={`/user/profile-info/${user.userId}`}>
                       Profile Info

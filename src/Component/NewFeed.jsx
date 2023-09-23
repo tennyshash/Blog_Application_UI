@@ -41,6 +41,8 @@ const NewFeed=()=>{
                 totalPages:data.totalPages
             })
 
+            //console.log(postContent)
+
             window.scroll(0,0)
         }).catch(error =>{
             toast.error("Error In Loading Posts ")
@@ -72,6 +74,7 @@ const NewFeed=()=>{
             toast.error("Unable to Delete")
             
         })
+        window.location.reload(true)
   }
 
 
@@ -104,7 +107,6 @@ const NewFeed=()=>{
                 </InfiniteScroll>
 
                 {/* <Container className="mt-2">
-
                     <Pagination >
                         <PaginationItem onClick={ ()=> changePage(postContent.pageNumber-1)} disabled ={postContent.pageNumber==0}>
                             <PaginationLink previous>
@@ -128,7 +130,6 @@ const NewFeed=()=>{
                             </PaginationLink>
                         </PaginationItem>
                     </Pagination>
-
                 </Container> */}
 
             </Col>

@@ -24,6 +24,7 @@ import UserProfile from './pages/UserProfile';
 import PostByTitle from './Component/user/PostByTitle';
 import UpdateProfile from './pages/user-routes/UpdateUserProfile';
 import UserCategory from './pages/user-routes/UserCategory';
+import Admin from './pages/Admin';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             
             <Route path='/user' element={  <PrivateRoute />} >  
                 <Route path='dashboard' element={  <UserDashboard />} />
+                <Route path='admin' element={  <Admin />} />
                 <Route path='profile-info/:userId' element={  <ProfileInfo />} />
                 <Route path='update-blog/:blogID' element={<UpdateBlog/>} />
                 <Route path='update-profile/:userId' element={<UpdateProfile/>} />

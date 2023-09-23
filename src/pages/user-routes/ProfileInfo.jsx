@@ -15,7 +15,7 @@ const  ProfileInfo=()=> {
   const [user,setUser] =useState( null )
 
   const userContextData=useContext(userContext)
-  console.log(user)
+  //console.log(user)
 
   useEffect( ()=>{
 

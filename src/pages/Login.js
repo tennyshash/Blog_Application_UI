@@ -40,7 +40,7 @@ const Login = () => {
         loginUser(loginDetail)
             .then( (data)=>{
 
-                console.log(data)
+                //console.log(data)
                 toast.success("Login Success")
 
                 // save data to local storage
@@ -53,8 +53,7 @@ const Login = () => {
                     });
 
                     //redirect to user dashboard page
-                    navigate("/user/dashboard")
-                
+                    navigate('/user/dashboard')
 
                 })
                 

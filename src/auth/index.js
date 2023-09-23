@@ -38,3 +38,14 @@
             return null;
         }
      }
+
+// Is Admin 
+     export const isAdmin=()=>{
+
+        const user=getCurrentUser();
+        {
+            if( user?.roles[0].roleName === "ROLE_ADMIN"){
+                return true
+            } else{ return false }
+        }
+     }

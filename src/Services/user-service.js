@@ -23,6 +23,22 @@ export const loginUser=(loginDetail)=>{
             .get(`/users/${userId}`)
             .then(response => response.data)
     }
+    
+// Delete  USER 
+
+    export const deleteUserService=(userId)=>{
+        return authAxios
+            .delete(`/users/${userId}`)
+            .then(response => response.data)
+    }
+
+// GET ALl  USER 
+
+    export const loadAllUserservie=(pageNumber,pageSize)=>{
+        return authAxios
+            .get(`/users/?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=createdAt&sortDir=desc`)
+            .then(response => response.data)
+    }
 
 // Update USer 
 
@@ -30,4 +46,12 @@ export const loginUser=(loginDetail)=>{
         return authAxios
             .put(`/users/${userId}`,user)
             .then( response => response.data)
+    }
+
+// Update Role
+    
+    export const updateRole=(userID,roleID)=>{
+        return authAxios
+            .put(`/users/${userID}/role/${roleID}`)
+            .then()
     }

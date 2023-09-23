@@ -13,7 +13,6 @@ const PostPage=()=>{
 
     const {postID}=useParams()
     const [post,setPost]=useState(null)
-    const [delCommentID,setDelCommentID]=useState(null)
     const [comment,setComment] =useState({
         content:''
     })

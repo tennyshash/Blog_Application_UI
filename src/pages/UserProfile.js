@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Base from '../Component/Base'
 import { Link } from 'react-router-dom'
-import { Button, Card, CardBody, Col,  Row,  } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, Col,  Label,  Row,  } from 'reactstrap'
 import ViewUserProfile from '../Component/user/ViewUserProfile'
 import { getUserbyId } from '../../src/Services/user-service'
-import { getCurrentUser } from '../auth'
+import { getCurrentUser, isAdmin, isLoggedIn } from '../auth'
 
 const UserProfile = () => {
 
@@ -43,13 +43,14 @@ const UserProfile = () => {
             <Row md={2}>
               <Button className='ms-3 mt-3' tag={Link} to={`/user-profile/user-posts/${user.userId}`}>User Post</Button>
             </Row>
-            <Row md={2}>
+            
+            {/* <Row md={2}>
               {
-                loggedUser?.userId == userId ?
-                  <Button className='ms-3 mt-3' tag={Link} to={`/user-profile/user-category/${user.userId}`}>User Category</Button> : ''
+                  isAdmin() ?
+                  <Button className='ms-3 mt-3' color='danger' tag={Link} to={`/user/admin`}>Admin </Button> : ''
 
               }
-            </Row>
+            </Row> */}
             
           </Col>
         </Row>
