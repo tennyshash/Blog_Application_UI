@@ -75,7 +75,7 @@ const Signup = () => {
 
         }).catch( (error)=>{
             console.log(error)
-            console.log("error log")
+            toast.error(error.response.data.message)
             // handle errors in proper way
 
             setError({

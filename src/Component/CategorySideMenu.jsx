@@ -16,8 +16,9 @@ function CategorySideMenu() {
                 
                 //console.log(data)
             }).catch(error=>{
+                toast.error(error.response.data.message)
                 //console.log(error)
-                toast.error("Error in loading categories")
+                //toast.error("Error in loading categories")
             })
     },[])
 

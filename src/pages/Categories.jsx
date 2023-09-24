@@ -57,8 +57,9 @@ function Categories() {
                 //location.reload()
 
             }).catch(error=>{
+                toast.error(error.response.data.message)
                 //console.log(error)
-                toast.error(" Error in Loading Post")
+                //toast.error(" Error in Loading Post")
             })
     }
 
@@ -71,7 +72,7 @@ function Categories() {
     //Function to delete Post
   const deletePost=(posteId)=>{
 
-        console.log(posteId)
+        //console.log(posteId)
 
         //api CAll
         deletePostService(posteId)
@@ -84,8 +85,9 @@ function Categories() {
 
         }).catch( error=>{
 
-            console.log(error)
-            toast.error("Unable to Delete")
+            toast.error(error.response.data.message)
+            //console.log(error)
+            //toast.error("Unable to Delete")
             
         })
   }

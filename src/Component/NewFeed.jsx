@@ -45,7 +45,8 @@ const NewFeed=()=>{
 
             window.scroll(0,0)
         }).catch(error =>{
-            toast.error("Error In Loading Posts ")
+            toast.error(error.response.data.message)
+            //toast.error("Error In Loading Posts ")
         })
     }
 
@@ -70,8 +71,9 @@ const NewFeed=()=>{
 
         }).catch( error=>{
 
-            console.log(error)
-            toast.error("Unable to Delete")
+            toast.error(error.response.data.message)
+            // console.log(error)
+            // toast.error("Unable to Delete")
             
         })
         window.location.reload(true)

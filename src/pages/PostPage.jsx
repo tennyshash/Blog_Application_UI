@@ -27,7 +27,8 @@ const PostPage=()=>{
             setPost(data)
         }).catch( error=>{
             console.log(error)
-            toast.error("Error in Loading Post")
+            toast.error(error.response.data.message)
+            //toast.error("Error in Loading Post")
         })
 
         
@@ -47,7 +48,7 @@ const PostPage=()=>{
         createComment(comment,post.postID,loggedUser.userId)
             .then(data=>{
                 toast.success("Comment Added")
-                console.log(data)
+                //console.log(data)
 
                 setPost({
                     ...post,comments:[...post.comments,data.data]
@@ -57,8 +58,9 @@ const PostPage=()=>{
                     content:''
                 })
             }).catch(error=>{
-                toast.error("Comment Could'nt be Added")
-                console.log(error)
+                toast.error(error.response.data.message)
+                //toast.error("Comment Could'nt be Added")
+                //console.log(error)
             })
     }
 
@@ -75,13 +77,14 @@ const PostPage=()=>{
         deleteCommentfromServer(commentID)
             .then( data=>{
 
-                console.log(data)
+                //console.log(data)
                 toast.success("Comment Deleted")
 
             }).catch( error=>{
 
-                console.log(error)
-                toast.error(error)
+                toast.error(error.response.data.message)
+                //console.log(error)
+                //toast.error(error)
 
             })
 

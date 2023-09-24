@@ -35,7 +35,8 @@ function UpdateBlog() {
             //console.log(data)
             setCategories(data)
         } ).catch(error=>{
-            //console.log(error)
+            toast.error(error.response.data.message)
+            
         })
 
         //load blog from database
@@ -47,8 +48,8 @@ function UpdateBlog() {
                 //console.log(data)
 
             }).catch(error=>{
-                toast.error("Cant Load Post")
-                console.log(error)
+                toast.error(error.response.data.message)
+                //console.log(error)
             })
         
     },[])
@@ -82,8 +83,9 @@ function UpdateBlog() {
                 })
             })
             .catch(error=>{
-                toast.error("Cant create")
-                console.log(error)
+                // toast.error("Cant create")
+                toast.error(error.response.data.message)
+                //console.log(error)
             })
     }
 
@@ -108,8 +110,9 @@ function UpdateBlog() {
                     .then(data=>{
                         toast.success("Image Uploaded")
                     }).catch(error=>{
-                        toast("Image Upload Failed")
-                        console.log(error)
+                        toast.error(error.response.data.message)
+                        //toast("Image Upload Failed")
+                        //console.log(error)
                     })
 
                 //console.log(data)
@@ -117,8 +120,9 @@ function UpdateBlog() {
 
             }).catch(error=>{
 
-                console.log(error)
-                toast.error("Unable to Update  .!")
+                //console.log(error)
+                toast.error(error.response.data.message)
+                //toast.error("Unable to Update  .!")
             })
 
         

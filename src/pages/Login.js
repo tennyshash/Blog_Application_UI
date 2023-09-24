@@ -59,11 +59,12 @@ const Login = () => {
                 
             } ).catch( (error) =>{
 
-                console.log(error)
+                //console.log(error)
                 if(error.response.status==400 || error.response.status==404){
                     toast.error(error.response.data.message)
                 }else{
-                    toast.error("Something Wrong  .!!")
+                    toast.error(error.response.data.message)
+                    //toast.error("Something Wrong  .!!")
                 }
                 
             })

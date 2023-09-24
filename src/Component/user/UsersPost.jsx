@@ -57,8 +57,9 @@ const  UsersPost=()=> {
         
       }).catch(error=>{
         
-        console.log(error)
-        toast.error("Unable To Load Post")
+        toast.error(error.response.data.message)
+        // console.log(error)
+        // toast.error("Unable To Load Post")
       })
   }
 
@@ -78,8 +79,9 @@ const deletePost=(posteId)=>{
 
       }).catch( error=>{
 
-        console.log(error)
-        toast.error("Unable to Delete")
+        toast.error(error.response.data.message)
+        // console.log(error)
+        // toast.error("Unable to Delete")
         
       })
   }

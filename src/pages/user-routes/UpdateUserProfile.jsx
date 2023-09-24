@@ -11,11 +11,13 @@ const UpdateUserProfile = () => {
   const {userId} = useParams()
 
   const laodUser=(userId)=>{
-    getUserbyId(userId)
-      .then(data =>{
-        console.log(data)
-        setUser({...data})
-      })
+      getUserbyId(userId)
+        .then(data =>{
+          console.log(data)
+          setUser({...data})
+        }).catch(error=>{
+          toast.error(error.response.data.message)
+        })
   }
 
   useEffect( ()=>{

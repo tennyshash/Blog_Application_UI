@@ -35,6 +35,7 @@ const AddPost=()=>{
                 //console.log(data)
                 setCategories(data)
             } ).catch(error=>{
+                toast.error(error.response.data.message)
                 //console.log(error)
             })
 
@@ -96,7 +97,8 @@ const AddPost=()=>{
             
             //console.log(post)
         }).catch( (error) =>{
-            toast.error("Post Not Created ")
+            toast.error(error.response.data.message)
+            //toast.error("Post Not Created ")
             //console.log(error)
         })
 
@@ -104,13 +106,13 @@ const AddPost=()=>{
 
     // Handling File Change Event / Image upload
     const handleFileChange=(event)=>{
-        console.log(event.target.files[0])
+        //console.log(event.target.files[0])
         setImage(event.target.files[0])
     }
     
     const submitNewCategory=()=>{
         
-        console.log(newCategory)
+        //console.log(newCategory)
 
         creatingCategory(newCategory)
             .then(data=>{
@@ -122,8 +124,9 @@ const AddPost=()=>{
                 })
             })
             .catch(error=>{
-                toast.error("Cant create")
-                console.log(error)
+                toast.error(error.response.data.message)
+                // toast.error("Cant create")
+                // console.log(error)
             })
     }
 

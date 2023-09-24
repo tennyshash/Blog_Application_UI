@@ -178,11 +178,14 @@ const ViewUserProfile = ( {user }) => {
 
           console.log(data)
           toast.success("Profile Updated")
+          
+          window.location.reload(true)
 
         }).catch( error=>{
 
-          console.log(error)
-          toast.error("Try Again ..!")
+          toast.error(error.response.data.message)
+          // console.log(error)
+          // toast.error("Try Again ..!")
         })
     }
     

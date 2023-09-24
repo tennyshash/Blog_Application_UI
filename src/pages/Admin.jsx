@@ -40,7 +40,8 @@ function Admin() {
             window.scroll(0,0)
 
         }).catch(error =>{
-            toast.error("Error -->Un-Authorised ..! ")
+            //console.log(error)
+            toast.error(error.response.data.message)
             navigate('/')
         })
     }
@@ -62,8 +63,9 @@ function Admin() {
 
       }).catch( error=>{
 
-          console.log(error)
-          toast.error("Unable to Delete")
+        toast.error(error.response.data.message)
+          // console.log(error)
+          // toast.error("Unable to Delete")
           
       })
 }
@@ -137,9 +139,9 @@ function Admin() {
                                     })
                                   }</td>
                                   <td className='text-center'> 
-                                    <Button className='' onClick={ ()=>deleteUser(user.userId) } > Delete</Button>
-                                    <Button className='mt-1 ms-5'  size='sm' onClick={ ()=>toAdmin(user.userId) } > Admin</Button>
+                                    <Button size='sm' onClick={ ()=>toAdmin(user.userId) } > Admin</Button>
                                     <Button className='mt-1 ms-5' size='sm' onClick={ ()=>toNormal(user.userId) } > Normal</Button>
+                                    <Button className='mt-1 ms-5'  size='sm' onClick={ ()=>deleteUser(user.userId) } > Delete</Button>
                                   </td>
                                 </tr>
                               ) )
