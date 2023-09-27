@@ -96,7 +96,7 @@ const Signup = () => {
                     <Col    sm={ {size:6, offset:3} } >
                         <Card color="warning" >
                             <CardHeader>
-                                <h4>Fill Information to Register  !!</h4>
+                                <h4>Let's Get  Started </h4>
                             </CardHeader>
                             <CardBody>
 
@@ -107,6 +107,7 @@ const Signup = () => {
                                     {/* Name Field */}
                                     <FormGroup>
                                         <Label for="name"> Enter Name</Label>
+                                        <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                                         <Input 
                                             type="text" 
                                             placeholder="Enter here"
@@ -127,6 +128,7 @@ const Signup = () => {
                                     {/* Email Field */}
                                     <FormGroup>
                                         <Label for="email"> Enter email</Label>
+                                        <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                                         <Input 
                                             type="email" 
                                             placeholder="Enter here"
@@ -147,6 +149,7 @@ const Signup = () => {
                                     {/* Password Field */}
                                     <FormGroup>
                                         <Label for="password"> Enter password</Label>
+                                        <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                                         <Input 
                                             type="password" 
                                             placeholder="Enter here"
@@ -166,6 +169,7 @@ const Signup = () => {
                                     {/* About Field */}
                                     <FormGroup>
                                         <Label for="about"> Write about yourself</Label>
+                                        <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                                         <Input 
                                             type="textarea" 
                                             placeholder="Enter here"

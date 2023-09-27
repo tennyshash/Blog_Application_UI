@@ -82,7 +82,8 @@ const AddPost=()=>{
                 .then(data=>{
                     toast.success("Image Uploaded")
                 }).catch(error=>{
-                    toast("Image Upload Failed")
+                    toast.error(error.response.data.message)
+                    // toast.error("Image Upload Failed")
                     console.log(error)
                 })
 
@@ -137,7 +138,7 @@ const AddPost=()=>{
                 <CardBody>
                 
                 {/* {JSON.stringify(post)} */}
-                    <h4>What going in Your mind .?</h4>
+                    <h4>What going in Your mind ?</h4>
                     <Form onSubmit={createPost}>
                     
 {/* Post Category */}
@@ -146,10 +147,11 @@ const AddPost=()=>{
                         <CardBody >
                             <div className="my-1">
                                 <Label for="category" >Post Category </Label>
+                                <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                                     <Input 
                                         type="select" 
                                         id="category"
-                                        placeholder="Select Something.!" 
+                                        placeholder="Select Something" 
                                         name="categoryID"
                                         onChange={fieldChange}
                                         defaultValue={0}
@@ -177,7 +179,7 @@ const AddPost=()=>{
                             
                                 <Input 
                                     type="text" 
-                                    placeholder="Create New Category here  with Min 4 Char !!"
+                                    placeholder="Create New Category here "
                                     value={newCategory.categoryTitle}
                                     onChange={ (event)=> setNewCategory({categoryTitle:event.target.value } )}
                                 />
@@ -188,10 +190,11 @@ const AddPost=()=>{
 {/* Post Title */}
                         <div className="my-3">
                             <Label for="title" >Post Title </Label>
+                            <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                             <Input 
                                 type="text " 
                                 id="title"
-                                placeholder="Enter here .!" 
+                                placeholder="Enter here " 
                                 name="title"
                                 onChange={fieldChange}  
                                 />
@@ -199,6 +202,7 @@ const AddPost=()=>{
 {/* Post Content */}
                         <div className="my-3">
                             <Label for="content" >Post Content </Label>
+                            <Label className="ms-1" style={ {color: 'red' } }>*</Label>
                             {/* <Input 
                                 type="textarea" 
                                 id="content"
@@ -214,7 +218,7 @@ const AddPost=()=>{
 {/* File Upload */}           
                         <div className="mt-3">
                             <Label for="image"> Select Post Banner</Label>
-                            <Label className="right">---------NOTE: Only JPG/PNG allowed .!!!</Label>
+                            <div><Label ><b>NOTE: Only JPG/PNG allowed </b></Label></div>
                             <Input  id="image"  type="file" onChange={handleFileChange} />
 
                         </div>

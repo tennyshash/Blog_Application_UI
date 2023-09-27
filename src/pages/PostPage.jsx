@@ -1,13 +1,16 @@
 import { useEffect } from "react"
+import { FaThumbsUp } from "react-icons/fa";
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { toast } from "react-toastify"
-import { Button, Card, CardBody, CardText, Col, Container, Input, Row } from "reactstrap"
+import { Button, Card, CardBody, CardText, Col, Container, Input, Label, Row } from "reactstrap"
 import { getCurrentUser, isLoggedIn } from "../auth"
 import Base from "../Component/Base"
 import { BASE_URL } from "../Services/helper"
 import { loadSinglePost } from "../Services/post-service"
 import { createComment, deleteCommentfromServer } from "../Services/comment-service"
+import { getLikesonPost, likesPost, unlikePost } from "../Services/like-service"
+import { IconContext } from "react-icons";
 
 const PostPage=()=>{
 
@@ -17,24 +20,48 @@ const PostPage=()=>{
         content:''
     })
 
-    const [loggedUser,setUser]=useState(undefined)
+    const [totalLikes,setTotalLikes]=useState(null)
+    const [loggedUser,setLoggedUser]=useState(undefined)
+
+    useEffect ( ()=>{
+
+        post && (
+
+            getLikesonPost(post.postID)
+                .then(data =>{
+
+                    setTotalLikes(data.length)
+                    console.log(data)
+
+                }).catch( error =>{
+                    console.log(error)
+                })
+        )
+            
+    })
 
     useEffect( ()=> {
 
+        setLoggedUser(getCurrentUser())
+
         // load post of postID
         loadSinglePost(postID).then(data=>{
+
+            setTotalLikes(data.likes.length)
             console.log(data);
             setPost(data)
+
         }).catch( error=>{
+
             console.log(error)
-            toast.error(error.response.data.message)
+            toast.error(error.response?.data.message)
             //toast.error("Error in Loading Post")
         })
 
-        
-        setUser(getCurrentUser())
-
     },[])
+
+
+    //console.log(loggedUser)
 
     const printDateTime=(numbers)=>{
         return new Date(numbers).toLocaleString()
@@ -80,12 +107,82 @@ const PostPage=()=>{
                 //console.log(data)
                 toast.success("Comment Deleted")
 
+                window.location.reload(true)
+
             }).catch( error=>{
 
                 toast.error(error.response.data.message)
-                //console.log(error)
+                console.log(error)
                 //toast.error(error)
 
+            })
+            
+
+    }
+
+    const [isLike,setIsLike]=useState(false)
+    const [colour,setColour]=useState('black')
+    
+
+    const handleClick=(postID)=>{
+        //console.log(loggedUser)
+
+        console.log(isLike)
+
+        isLike ? handleDislike(postID) : handlelike(postID) 
+        setIsLike(!isLike)
+
+    }
+
+    const handlelike=(postID)=>{
+        //console.log(post)
+
+        likesPost(loggedUser.userId,postID)
+            .then(data=>{
+
+                setColour("cornflowerblue");
+                //setLike(post.likes.length)
+                
+                // setPost({
+                //     ...post,likes:[...post.likes,data]
+                // })
+
+                data.likes?.map( (like)=>{
+                    if(like.userID===getCurrentUser()?.userId){
+                        setColour("cornflowerblue")
+                        setIsLike(true)
+                    }
+                })
+
+                setTotalLikes(post.likes.length)
+                    console.log(data)
+                    console.log(post)
+
+                toast.success("Liked")
+
+                // console.log(post)
+                // console.log( post.likes.length)
+
+            }).catch(error=>{
+                console.log(error)
+                toast.error(error)
+            })
+
+    }
+    const handleDislike=(postID)=>{
+
+        unlikePost(loggedUser.userId,postID)
+            .then(data=>{
+
+                setColour("black")
+                //setLike(post.likes.length)
+
+                console.log(data)
+                toast.success("Un-Liked")
+
+            }).catch(error=>{
+                console.log(error)
+                toast.error(error.response.data)
             })
 
     }
@@ -113,6 +210,7 @@ const PostPage=()=>{
                                                 {post.category.categoryTitle}
                                             </span>
                                         </CardText>
+                                        
 
                                         <div className="divder" style={{
                                             width:'100%',
@@ -140,11 +238,42 @@ const PostPage=()=>{
 
                     </Col>
                 </Row>
- {/* Comment Part Of UI */}
                 <Row className="my-4">
+                    <Col md={2}>
+{/* Button for likes */}
+                        {
+                            getCurrentUser() ? 
+                                <IconContext.Provider value={ { color: colour , size: "3em"}}
+                                >
+                                    <Row className="ms-2">
+                                        <Link onClick={()=>handleClick(post.postID)}>
+                                            <FaThumbsUp className="mt-2"  id={'search-icon'}/>
+                                        </Link>
+                                    </Row>
+                                    <Row className="ms-1 mt-2">
+                                        <b>Like : {totalLikes}</b>
+                                    </Row>
+                                </IconContext.Provider>
+                            :
+                                <IconContext.Provider value={ { color: colour , size: "3em"}}
+                                >
+                                    <Row className="ms-2">
+                                        <Link >
+                                            <FaThumbsUp className="mt-2"  id={'search-icon'}/>
+                                        </Link>
+                                    </Row>
+                                    <Row className="ms-1 mt-2">
+                                        <b>Like : {totalLikes}</b>
+                                    </Row>
+                                </IconContext.Provider>
+                          }
+
+                    </Col>
+
+ {/* Comment Part Of UI */}
                     <Col md={
                         {
-                            size:9,
+                            size:8,
                             offset:1
                         }
                     }>
@@ -189,6 +318,7 @@ const PostPage=()=>{
                         </Card>
 
                     </Col>
+
                 </Row>
 
             </Container>

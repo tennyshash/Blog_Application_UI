@@ -42,6 +42,8 @@ const UserProfile = () => {
           <Col md={ {size:2}}>
             <Row md={2}>
               <Button className='ms-3 mt-3' tag={Link} to={`/user-profile/user-posts/${user.userId}`}>User Post</Button>
+              <Button className='ms-3 mt-3' tag={Link} to={`/user-profile/user-posts/${user.userId}`}>Followers</Button>
+              <Button className='ms-3 mt-3' tag={Link} to={`/user-profile/user-posts/${user.userId}`}>Following</Button>
             </Row>
             
             {/* <Row md={2}>

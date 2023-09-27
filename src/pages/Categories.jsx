@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Base from '../Component/Base'
-import { Container, Row , Col} from "reactstrap";
+import { Container, Row , Col, Pagination, PaginationItem, PaginationLink} from "reactstrap";
 import CategorySideMenu from "../Component/CategorySideMenu";
 import { loadPostByCategory } from '../Services/post-service';
 import { toast } from 'react-toastify';
@@ -32,7 +32,6 @@ function Categories() {
 
     },[currentPage])
 
-
     const changePostPage=(pageNumber=0,pageSize=5)=>{
 
         if(pageNumber>posts.pageNumber && posts.lastPage)   return
@@ -54,6 +53,8 @@ function Categories() {
 
                 })
 
+                
+
                 //location.reload()
 
             }).catch(error=>{
@@ -61,6 +62,7 @@ function Categories() {
                 //console.log(error)
                 //toast.error(" Error in Loading Post")
             })
+            
     }
 
     const changePageInfinite=()=>{

@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom'
 function CategorySideMenu() {
 
     const [categories,setCategories]=useState([])
+    const [categoryID,setCategoryID]=useState(null)
 
     useEffect(()=>{
 
         loadAllCategories()
             .then(data=>{
                 setCategories([...data])
+                
                 
                 //console.log(data)
             }).catch(error=>{
@@ -26,13 +28,14 @@ function CategorySideMenu() {
         <div>
             <ListGroup>
                 <ListGroupItem tag={Link} to='/' action={true} className='border-0 shadow mt-1'>
-                    All Blogs Categories .!
+                    <b>All Blogs Categories ! </b>
                 </ListGroupItem>
                 {
                     categories && categories.map( (cat,index) =>{
                         return(
-                            <ListGroupItem tag={Link} to= { '/categories/'+ cat.categoryID} key={index} action={true} className='border-0 shadow mt-1'>
+                            <ListGroupItem  tag={Link} to= { '/categories/'+ cat.categoryID} key={index} action={true} className='border-0 shadow mt-1'>
                                {cat.categoryTitle}
+                               
                             </ListGroupItem>
                         )
                     })

@@ -135,7 +135,7 @@ const ViewUserProfile = ( {user }) => {
               
               <tr>
                 <td >
-                  About User
+                  User Bio
                 </td>
                 <td>
                   <Input 
@@ -156,7 +156,7 @@ const ViewUserProfile = ( {user }) => {
                     type="password" 
                     id="password"
                     name="password"
-                    placeholder='Min 3 Char & Max 10'
+                    placeholder='Min 6 Char & Max 12 Char'
                     onChange={ (event)=> handleChange(event,'password') }  
                   />
                 </td>
@@ -183,8 +183,8 @@ const ViewUserProfile = ( {user }) => {
 
         }).catch( error=>{
 
-          toast.error(error.response.data.message)
-          // console.log(error)
+          toast.error(error.response.data.name)
+          console.log(error)
           // toast.error("Try Again ..!")
         })
     }

@@ -44,7 +44,7 @@
 
         const user=getCurrentUser();
         {
-            if( user?.roles[0].roleName === "ROLE_ADMIN"){
+            if( user?.roles[0]?.roleName === "ROLE_ADMIN"){
                 return true
             } else{ return false }
         }

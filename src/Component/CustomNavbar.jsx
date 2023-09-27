@@ -14,6 +14,9 @@ import {
   DropdownItem,
   NavbarText,
   Button,
+  Card,
+  CardHeader,
+  CardBody,
 } from 'reactstrap';
 import { doLogout, getCurrentUser, isAdmin, isLoggedIn } from '../auth';
 import userContext from '../context/userContext';
@@ -59,10 +62,11 @@ const CustomNavbar = () => {
   return (
     <div>
       <Navbar
+
         color='warning'
         light
         expand="md"
-        fixed='' 
+        fixed='top' 
         className='px-5'
       >
         <NavbarBrand tag={ReactLink} to="/" >
@@ -71,7 +75,7 @@ const CustomNavbar = () => {
         <NavbarToggler onClick={ ()=>setIsOpen(!isOpen) } />
         
         <Collapse isOpen={isOpen}  navbar>
-          <Nav className="me-auto" navbar>  
+          <Nav className="me-auto" navbar >  
                       {/* className="me-auto " is moving all links like login about inside this nav to right. */}
             
             <NavItem>
@@ -178,7 +182,15 @@ const CustomNavbar = () => {
           </Nav>
         </Collapse>
       </Navbar>
+      <Card  className='border-0' color='red'>
+        <CardBody>
+            <CardHeader>
+              
+            </CardHeader>
+        </CardBody>
+      </Card>
     </div>
+    
   );
 }
 

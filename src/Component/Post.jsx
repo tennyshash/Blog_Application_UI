@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Card, CardBody, CardText } from 'reactstrap'
-import { getCurrentUser, isLoggedIn } from '../auth'
+import { getCurrentUser, isAdmin, isLoggedIn } from '../auth'
 import userContext from '../context/userContext'
 
 function Post( {post={ title:"This is Default Post Title" , content: " This is Default Post Content"}, deletePost}) {
@@ -42,7 +42,7 @@ function Post( {post={ title:"This is Default Post Title" , content: " This is D
                 <Link className='btn btn-secondary' to={'/posts/'+post.postID}> Read More </Link>
 
                 { 
-                  userContextData.user.login && ( loggedUser.userId==post.user.userId ) ?
+                  userContextData.user.login && ( (loggedUser.userId==post.user.userId) || (isAdmin()) ) ?
                   <Button onClick={()=> deletePost(post.postID)} color='dark' className='ms-2'> Delete </Button> :''
                 }
                 { 
