@@ -129,7 +129,7 @@ function Admin() {
                               allUser.content.map( (user,index)=>(
                                 <tr className='mt-1' key={index}>
                                   <td>{user.userId}</td>
-                                  <td>{user.name}</td>
+                                  <td><Link className='mt-1' style={{ color: 'black' }} to={`/user-profile/${user.userId}`}>{user.name}</Link></td>
                                   <td ><Link className='mt-1' style={{ color: 'black' }} to={`/user-profile/user-posts/${user.userId}`}>{user.email}</Link></td>
                                   <td>{
                                     user.roles.map( (role)=>{

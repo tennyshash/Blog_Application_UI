@@ -109,7 +109,7 @@ const CustomNavbar = () => {
                 <DropdownItem divider />
 
                 <DropdownItem tag={ReactLink} to='https://github.com/tennyshash'>GitHub</DropdownItem>
-                <DropdownItem>Swagger UI</DropdownItem>
+                <DropdownItem tag={ReactLink} to='http://localhost:9999/swagger-ui/index.html'>Swagger UI</DropdownItem>
                 <DropdownItem tag={ReactLink}  to='https://www.linkedin.com/in/shashwatpratap-parihar/'>LinkedIn</DropdownItem>
 
               </DropdownMenu>

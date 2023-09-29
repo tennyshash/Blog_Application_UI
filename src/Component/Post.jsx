@@ -30,7 +30,7 @@ function Post( {post={ title:"This is Default Post Title" , content: " This is D
             <h3>{ post.title } </h3>
 
             <CardText>
-              <h10>Posted BY <b ><Link to={`/user-profile/${post.user.userId}` } style={{ color: 'black' }}>{post.user.name}</Link></b> on <b>{ printDate(post.createdAt)}</b> Update At : <b>{ post.createdAt !== post.updateAt ?  printDate(post.createdAt) : ' Not Yet Updated'}</b>  </h10>
+              <h10>Posted BY <b ><Link to={`/user-profile/${post.user.userId}` } style={{ color: 'black' }}>{post.user.name}</Link></b> on <b>{ printDate(post.createdAt)}</b> {/* Update At : <b>{ post.createdAt !== post.updateAt ?  printDate(post.createdAt) : ' Not Yet Updated'}</b> */}  </h10>
 
             </CardText>
 

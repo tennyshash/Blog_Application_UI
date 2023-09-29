@@ -11,6 +11,8 @@ import { loadSinglePost } from "../Services/post-service"
 import { createComment, deleteCommentfromServer } from "../Services/comment-service"
 import { getLikesonPost, likesPost, unlikePost } from "../Services/like-service"
 import { IconContext } from "react-icons";
+import UserProfile from "./UserProfile";
+import { followUser, unfollowUser } from "../Services/user-service";
 
 const PostPage=()=>{
 
@@ -123,7 +125,7 @@ const PostPage=()=>{
     const [isLike,setIsLike]=useState(false)
     const [colour,setColour]=useState('black')
     
-
+/* Methods For Likes    */
     const handleClick=(postID)=>{
         //console.log(loggedUser)
 
@@ -155,13 +157,10 @@ const PostPage=()=>{
                 })
 
                 setTotalLikes(post.likes.length)
-                    console.log(data)
-                    console.log(post)
+                    // console.log(data)
+                    // console.log(post)
 
                 toast.success("Liked")
-
-                // console.log(post)
-                // console.log( post.likes.length)
 
             }).catch(error=>{
                 console.log(error)
@@ -187,6 +186,42 @@ const PostPage=()=>{
 
     }
 
+/*  Method For Follow   */
+
+const [isClicked,setIsClicked]=useState(false)
+
+const handleClickFollow=(followerId,followingId)=>{
+
+    isClicked ? handleUnFollow(followerId,followingId) : handleFollow(followerId,followingId) 
+    setIsClicked(!isClicked)
+
+  }
+  const handleUnFollow=(followerId,followingId)=>{
+      unfollowUser(followerId,followingId)
+        .then( data=>{
+          //console.log(data)
+          toast.success(data.message)
+
+        })
+        .catch( error=>{
+          //console.log(error)
+          toast.error("Error")
+        })
+  }
+  const handleFollow=(followerId,followingId)=>{
+      followUser(followerId,followingId)
+        .then(data=>{
+
+          //console.log(data)
+          toast.success(data.message)
+
+        }).catch(error=>{
+          //console.log(error)
+          toast.error("Error")
+        })
+
+  }
+
     return(
         <Base>
             <Container className="mt-4">
@@ -202,7 +237,19 @@ const PostPage=()=>{
                                     <CardBody>
 
                                         <CardText>
-                                            Posted BY <b>{post.user.name}</b> on <b>{ printDateTime(post.createdAt)}</b>  
+                                            Posted BY <b><Link to={`/user-profile/${post.user.userId}` } style={{ color: 'black' }}>{post.user.name}</Link></b> on <b>{ printDateTime(post.createdAt)}</b>
+{/*  Follow User Button    */}              {
+                                                isLoggedIn() && (
+                                                    loggedUser.userId!=post.user.userId ?
+                                                    <Button  
+                                                        onClick={()=> handleClickFollow(loggedUser.userId,post.user.userId)}
+                                                        color='warning' 
+                                                        style={{float:'right'}}> 
+                                                        <i style={ {color:'black'}}> Follow User</i></Button>
+                                                    :   ''
+                                                )
+                                            }
+                                            
                                         </CardText>
 
                                         <CardText>
@@ -266,7 +313,7 @@ const PostPage=()=>{
                                         <b>Like : {totalLikes}</b>
                                     </Row>
                                 </IconContext.Provider>
-                          }
+                        }
 
                     </Col>
 

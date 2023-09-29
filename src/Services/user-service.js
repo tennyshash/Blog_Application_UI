@@ -1,6 +1,6 @@
 import { authAxios, myAxios } from "./helper";
 
-
+// SignUp
 export const signUp=(user)=>{
 
     return myAxios
@@ -9,6 +9,7 @@ export const signUp=(user)=>{
 
 }
 
+// Login 
 export const loginUser=(loginDetail)=>{
 
     return myAxios
@@ -55,3 +56,19 @@ export const loginUser=(loginDetail)=>{
             .put(`/users/${userID}/role/${roleID}`)
             .then()
     }
+
+//Follow User
+
+    export const followUser=(followerId,followingId)=>{
+        return authAxios
+            .post(`/users/${followerId}/following/${followingId}/follow`)
+            .then(response => response.data)
+    }
+
+//Un-Follow User
+
+export const unfollowUser=(followerId,followingId)=>{
+    return authAxios
+        .put(`/users/${followerId}/following/${followingId}/unfollow`)
+        .then(response => response.data)
+}
