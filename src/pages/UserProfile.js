@@ -101,12 +101,11 @@ const UserProfile = () => {
                   )
               }
               
-              {   
-                isLoggedIn() ?  
+              {
                 <>
                   <Button outline color='warning' className='ms-3 mt-3' tag={Link} > <i style={ {color:'black'}}> Followers : {user.followers.length} </i></Button>
                   <Button outline color='warning' className='ms-3 mt-3' tag={Link} > <i style={ {color:'black'}}> Following : {user.following.length} </i></Button>
-                </> :''
+                </> 
               }
               
             </Row>
